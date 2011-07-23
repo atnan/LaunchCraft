@@ -1,5 +1,7 @@
 var LaunchCraft = {
-  
+    launch: function(username, password, server) {
+      LaunchCraft.applet.launchMinecraft(username, password, server);
+    },
     onLoad: null,
     load: function(onLoadCallback) {        
         if (!document.getElementById('LaunchCraft') && !LaunchCraft.applet) {
@@ -34,7 +36,6 @@ var LaunchCraft = {
         }
         return true;
     },
-    
     applet: null,
     appletLoaded: false,
     hasAppletLoaded: function() {
@@ -47,10 +48,6 @@ var LaunchCraft = {
         if (typeof(LaunchCraft.onLoad) == typeof(Function)) {
           LaunchCraft.onLoad();
         }
-    },
-    
-    isClientDownloaded: function() {
-      return (!!LaunchCraft.applet.isClientDownloaded());
     }
 };
 
