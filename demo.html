@@ -7,7 +7,26 @@
   <script type="text/javascript" charset="utf-8">
     window.onload = (function() {
       LaunchCraft.load(function() {
-        LaunchCraft.launch("username", "password", "example.com");
+        var launchMineCraft = (function() {
+          if (!LaunchCraft.launch("username", "password", "example.com")) {
+            alert("Unable to launch Minecraft.");
+          }
+        })
+
+        var minecraftDownloadSuccess = (function() {
+          launchMineCraft();
+        });
+
+        var minecraftDownloadFail = (function() {
+          alert("Unable to download the Minecraft launcher.");
+        });
+
+        if (LaunchCraft.isMinecraftDownloaded()) {
+          launchMineCraft();
+
+        } else {
+          LaunchCraft.downloadMinecraft(minecraftDownloadSuccess, minecraftDownloadFail);
+        }
       });
     });
   </script>
